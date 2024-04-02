@@ -1,0 +1,30 @@
+{
+  "name": "meticulous-typescript-profile",
+  "version": "0.1.0",
+  "description": "Typescript definitions do deal with the meticulous profiles ",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "check-types": "tsc --noEmit",
+    "format": "prettier --config .prettierrc \"{src/**/,.github/**/,}*.{tsx,ts}\" --write",
+    "format:check": "prettier --config .prettierrc \"{src/**/,.github/**/,}*.{tsx,ts}\" --check"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FFFuego/meticulous-typescript-profile.git"
+  },
+  "author": "",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/FFFuego/meticulous-typescript-profile/issues"
+  },
+  "homepage": "https://github.com/FFFuego/meticulous-typescript-profile",
+  "dependencies": {
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "@types/uuid": "^9.0.8",
+    "prettier": "^3.2.5",
+    "typescript": "^5.4.3"
+  }
+}
