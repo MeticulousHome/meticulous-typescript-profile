@@ -2,7 +2,7 @@
   "name": "meticulous-typescript-profile",
   "version": "0.1.0",
   "description": "Typescript definitions do deal with the meticulous profiles ",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
     "check-types": "tsc --noEmit",
@@ -26,5 +26,8 @@
     "@types/uuid": "^9.0.8",
     "prettier": "^3.2.5",
     "typescript": "^5.4.3"
-  }
+  },
+  "files": [
+    "dist/"
+  ]
 }
