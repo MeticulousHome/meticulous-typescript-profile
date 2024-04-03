@@ -126,7 +126,10 @@ function replaceVariable(
   return valueOrVariable;
 }
 
-export function processProfileVariables(profile: Profile): Profile {
+export function processProfileVariables(originalProfile: Profile): Profile {
+
+  const profile = JSON.parse(JSON.stringify(originalProfile))
+
   // Build a lookup table for cleaner code
   const variablesMap: { [key: string]: Variable } = {};
   profile.variables?.forEach((varEntry) => {
