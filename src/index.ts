@@ -21,21 +21,21 @@ export const UnitLables: Record<string, string> = {
 };
 
 export interface PreviousAuthor {
-  name: string; // required
-  author_id: UUID; // required
-  profile_id: UUID; // required
+  name: string;
+  author_id: UUID;
+  profile_id: UUID;
 }
 
 export interface Profile {
-  name: string; // required
-  id: UUID; // required
-  author: string; // required
-  author_id: UUID; // required
-  previous_authors: PreviousAuthor[]; // required
-  temperature: number; // required, min: 0, max: 100
-  final_weight: number; // required, min: 0, max: 2000
-  variables: Variable[]; // required
-  stages: Stage[]; // required
+  name: string;
+  id: UUID;
+  author: string;
+  author_id: UUID;
+  previous_authors: PreviousAuthor[];
+  temperature: number; // min: 0, max: 100
+  final_weight: number; // min: 0, max: 2000
+  variables: Variable[];
+  stages: Stage[];
 }
 
 function validateVariableOrValues(profile: Profile) {
@@ -54,7 +54,7 @@ function validateVariableOrValues(profile: Profile) {
     );
 
     // Validate exit triggers
-    stage.exit_triggers.forEach((trigger) => {
+    stage.exit_triggers?.forEach((trigger) => {
       if (
         typeof trigger.value === 'string' &&
         !VariableRegex.test(trigger.value)

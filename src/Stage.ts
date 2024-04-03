@@ -10,11 +10,11 @@ export const StageTypeNames: Record<StageType, string> = {
 };
 
 export interface Stage {
-  name: string; // required
-  key: string; // required
-  temperature_delta: number; // min: -100, max: 100
-  type: StageType; // required
-  dynamics: Dynamics; // required
-  exit_triggers: ExitTrigger[];
-  limits: Limit[];
+  name: string;
+  key: string;
+  temperature_delta?: number; // min: -100, max: 100
+  type: StageType;
+  dynamics: Dynamics;
+  exit_triggers?: ExitTrigger[];
+  limits?: Limit[];
 }

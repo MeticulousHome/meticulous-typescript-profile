@@ -7,6 +7,6 @@ export const LimitNames: Record<LimitType, string> = {
 };
 
 export interface Limit {
-  type: LimitType; // required
-  value: VariableOrValue; // required
+  type: LimitType;
+  value: VariableOrValue;
 }

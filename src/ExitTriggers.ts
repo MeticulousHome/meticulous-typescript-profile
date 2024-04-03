@@ -32,8 +32,8 @@ export const ExitTriggerNames: Record<ExitTriggerType, string> = {
 };
 
 export interface ExitTrigger {
-  type: ExitTriggerType; // required
-  value: VariableOrValue; // required
+  type: ExitTriggerType;
+  value: VariableOrValue;
   relative?: boolean;
   comparison?: ExitTriggerComparison; // ">=" is assumed if non existant
 }

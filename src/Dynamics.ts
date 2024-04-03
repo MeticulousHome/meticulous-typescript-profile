@@ -7,7 +7,7 @@ export type DynamicsInterpolationOverType =
 export type DynamicsInterpolationType = 'none' | 'linear' | 'curve';
 
 export interface Dynamics {
-  points: [VariableOrValue, VariableOrValue][]; // required
-  over: DynamicsInterpolationOverType; // required
-  interpolation: DynamicsInterpolationType; // required
+  points: [VariableOrValue, VariableOrValue][];
+  over: DynamicsInterpolationOverType;
+  interpolation: DynamicsInterpolationType;
 }

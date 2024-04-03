@@ -7,8 +7,8 @@ export type VariableType =
   | 'piston_position';
 
 export interface Variable {
-  name: string; // required
-  key: string; // required
-  type: VariableType; // required
-  value: number; // required
+  name: string;
+  key: string;
+  type: VariableType;
+  value: number;
 }
