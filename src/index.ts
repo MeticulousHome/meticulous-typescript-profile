@@ -1,3 +1,5 @@
+import { ExitTrigger } from './ExitTriggers';
+import { Limit } from './Limits';
 import { Stage } from './Stage';
 import { Variable } from './Variables';
 import {
@@ -5,6 +7,7 @@ import {
   UndefinedVariableException,
   VariableTypeException
 } from './errors';
+import { Point } from './Dynamics';
 import { UUID } from './uuid';
 
 export * from './Dynamics';
@@ -127,17 +130,16 @@ function replaceVariable(
 }
 
 export function processProfileVariables(originalProfile: Profile): Profile {
-
-  const profile = JSON.parse(JSON.stringify(originalProfile))
+  const profile = JSON.parse(JSON.stringify(originalProfile));
 
   // Build a lookup table for cleaner code
   const variablesMap: { [key: string]: Variable } = {};
-  profile.variables?.forEach((varEntry) => {
+  profile.variables?.forEach((varEntry: Variable) => {
     variablesMap[varEntry.key] = varEntry;
   });
 
   try {
-    profile.stages?.forEach((stage, stageIndex) => {
+    profile.stages?.forEach((stage: Stage, stageIndex: number) => {
       if (!('type' in stage)) {
         throw new FormatException(`stage ${stageIndex} missing 'type' field`);
       }
@@ -155,32 +157,34 @@ export function processProfileVariables(originalProfile: Profile): Profile {
       }
 
       const stageType = stage.type;
-      stage.dynamics.points.forEach((point) => {
+      stage.dynamics.points.forEach((point: Point) => {
         const pointXType = stage.dynamics.over || 'time';
         point[0] = replaceVariable(point[0], pointXType, variablesMap);
         point[1] = replaceVariable(point[1], stageType, variablesMap);
       });
 
-      stage.exit_triggers?.forEach((trigger, triggerIndex) => {
-        if (!('type' in trigger)) {
-          throw new FormatException(
-            `exitTrigger ${triggerIndex} missing 'type' field`
+      stage.exit_triggers?.forEach(
+        (trigger: ExitTrigger, triggerIndex: number) => {
+          if (!('type' in trigger)) {
+            throw new FormatException(
+              `exitTrigger ${triggerIndex} missing 'type' field`
+            );
+          }
+          if (!('value' in trigger)) {
+            throw new FormatException(
+              `exitTrigger ${triggerIndex} missing 'value' field`
+            );
+          }
+
+          trigger.value = replaceVariable(
+            trigger.value,
+            trigger.type,
+            variablesMap
           );
         }
-        if (!('value' in trigger)) {
-          throw new FormatException(
-            `exitTrigger ${triggerIndex} missing 'value' field`
-          );
-        }
+      );
 
-        trigger.value = replaceVariable(
-          trigger.value,
-          trigger.type,
-          variablesMap
-        );
-      });
-
-      stage.limits?.forEach((limit, limitIndex) => {
+      stage.limits?.forEach((limit: Limit, limitIndex: number) => {
         if (!('type' in limit)) {
           throw new FormatException(`limit ${limitIndex} missing 'type' field`);
         }

@@ -6,8 +6,9 @@ export type DynamicsInterpolationOverType =
   | 'weight';
 export type DynamicsInterpolationType = 'none' | 'linear' | 'curve';
 
+export type Point = [VariableOrValue, VariableOrValue];
 export interface Dynamics {
-  points: [VariableOrValue, VariableOrValue][];
+  points: Point[];
   over: DynamicsInterpolationOverType;
   interpolation: DynamicsInterpolationType;
 }
