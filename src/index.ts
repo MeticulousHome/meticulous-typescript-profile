@@ -15,6 +15,7 @@ export * from './ExitTriggers';
 export * from './Limits';
 export * from './Stage';
 export * from './Variables';
+export * from './uuid';
 
 export const VariableRegex = /^\$.*$/;
 export type VariableOrValue = number | string;
