@@ -8,14 +8,12 @@ import {
   VariableTypeException
 } from './errors';
 import { Point } from './Dynamics';
-import { UUID } from './uuid';
 
 export * from './Dynamics';
 export * from './ExitTriggers';
 export * from './Limits';
 export * from './Stage';
 export * from './Variables';
-export * from './uuid';
 
 export const VariableRegex = /^\$.*$/;
 export type VariableOrValue = number | string;
@@ -32,15 +30,15 @@ export const UnitLables: Record<string, string> = {
 
 export interface PreviousAuthor {
   name: string;
-  author_id: UUID;
-  profile_id: UUID;
+  author_id: string;
+  profile_id: string;
 }
 
 export interface Profile {
   name: string;
-  id: UUID;
+  id: string;
   author: string;
-  author_id: UUID;
+  author_id: string;
   previous_authors: PreviousAuthor[];
   temperature: number; // min: 0, max: 100
   final_weight: number; // min: 0, max: 2000
@@ -86,18 +84,6 @@ function validateVariableOrValues(profile: Profile) {
 
 export function parseProfile(jsonString: string) {
   const tempProfile = JSON.parse(jsonString);
-
-  // Convert author_id and profile_id in previous_authors to UUID instances
-  tempProfile.previous_authors = tempProfile.previous_authors.map(
-    (author: any) => ({
-      ...author,
-      author_id: new UUID(author.author_id),
-      profile_id: new UUID(author.profile_id)
-    })
-  );
-
-  tempProfile.id = new UUID(tempProfile.id);
-  tempProfile.author_id = new UUID(tempProfile.author_id);
 
   validateVariableOrValues(tempProfile);
 
