@@ -1,3 +1,4 @@
+import { Display } from './Display';
 import { ExitTrigger } from './ExitTriggers';
 import { Limit } from './Limits';
 import { Stage } from './Stage';
@@ -37,6 +38,7 @@ export interface PreviousAuthor {
 export interface Profile {
   name: string;
   id: string;
+  display?: Display;
   author: string;
   author_id: string;
   previous_authors: PreviousAuthor[];
@@ -44,7 +46,6 @@ export interface Profile {
   final_weight: number; // min: 0, max: 2000
   variables: Variable[];
   stages: Stage[];
-  display: { image: string };
 }
 
 function validateVariableOrValues(profile: Profile) {
