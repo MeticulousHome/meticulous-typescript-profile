@@ -1,4 +1,4 @@
 export interface Display {
-  image?: String;
-  accentColor?: String;
+  image?: string;
+  accentColor?: string;
 }
