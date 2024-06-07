@@ -48,6 +48,16 @@ export interface Profile {
   stages: Stage[];
 }
 
+export interface Firmware {
+  name: string;
+  hostname: string;
+  firmware: string;
+  color: string;
+  model_version: string;
+  serial: string;
+  mock_response: boolean;
+}
+
 function validateVariableOrValues(profile: Profile) {
   // Validate dynamics in stages
   profile.stages.forEach((stage) => {
