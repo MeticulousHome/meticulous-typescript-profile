@@ -9,9 +9,11 @@ export const StageTypeNames: Record<StageType, string> = {
   power: 'Motor Power'
 };
 
+export type StageKey = string;
+
 export interface Stage {
   name: string;
-  key: string;
+  key: StageKey;
   temperature_delta?: number; // min: -100, max: 100
   type: StageType;
   dynamics: Dynamics;

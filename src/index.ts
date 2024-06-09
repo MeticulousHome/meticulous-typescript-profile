@@ -2,7 +2,7 @@ import { Display } from './Display';
 import { ExitTrigger } from './ExitTriggers';
 import { Limit } from './Limits';
 import { Stage } from './Stage';
-import { Variable } from './Variables';
+import { Variable, VariableKey } from './Variables';
 import {
   FormatException,
   UndefinedVariableException,
@@ -17,7 +17,7 @@ export * from './Stage';
 export * from './Variables';
 
 export const VariableRegex = /^\$.*$/;
-export type VariableOrValue = number | string;
+export type VariableOrValue = number | VariableKey;
 
 export const UnitLables: Record<string, string> = {
   pressure: 'bar',
