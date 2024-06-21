@@ -92,7 +92,7 @@ export function parseProfile(jsonString: string) {
   return tempProfile as Profile;
 }
 
-function replaceVariable(
+export function replaceVariable(
   valueOrVariable: VariableOrValue,
   expectedType: string,
   variablesMap: { [key: string]: Variable }
@@ -118,14 +118,18 @@ function replaceVariable(
   return valueOrVariable;
 }
 
-export function processProfileVariables(originalProfile: Profile): Profile {
-  const profile = JSON.parse(JSON.stringify(originalProfile));
-
+export function buildProfileMap(profile: Profile): { [key: string]: Variable } {
   // Build a lookup table for cleaner code
   const variablesMap: { [key: string]: Variable } = {};
   profile.variables?.forEach((varEntry: Variable) => {
     variablesMap[varEntry.key] = varEntry;
   });
+  return variablesMap;
+}
+
+export function processProfileVariables(originalProfile: Profile): Profile {
+  const profile = JSON.parse(JSON.stringify(originalProfile));
+  const variablesMap = buildProfileMap(profile);
 
   try {
     profile.stages?.forEach((stage: Stage, stageIndex: number) => {
