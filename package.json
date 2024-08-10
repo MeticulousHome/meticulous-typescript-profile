@@ -1,8 +1,10 @@
 {
-  "name": "meticulous-typescript-profile",
+  "name": "@meticulous-home/espresso-profile",
   "version": "0.3.2",
-  "description": "Typescript definitions do deal with the meticulous profiles ",
+  "description": "Typescript definitions to deal with the meticulous profiles",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "type": "module",
   "scripts": {
     "build": "tsc",
     "check-types": "tsc --noEmit",
@@ -13,7 +15,7 @@
     "type": "git",
     "url": "git+https://github.com/MeticulousHome/meticulous-typescript-profile.git"
   },
-  "author": "",
+  "author": "MeticulousHome",
   "license": "GPL-3.0",
   "bugs": {
     "url": "https://github.com/MeticulousHome/meticulous-typescript-profile/issues"
