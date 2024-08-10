@@ -1,8 +1,9 @@
 {
-  "name": "meticulous-typescript-profile",
-  "version": "0.3.2",
-  "description": "Typescript definitions do deal with the meticulous profiles ",
+  "name": "@meticulous-home/espresso-profile",
+  "version": "0.4.0",
+  "description": "Typescript definitions to deal with the meticulous profiles",
   "main": "dist/index.js",
+  "type": "module",
   "scripts": {
     "build": "tsc",
     "check-types": "tsc --noEmit",
