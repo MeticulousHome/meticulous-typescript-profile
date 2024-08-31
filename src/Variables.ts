@@ -46,37 +46,37 @@ export function findVariableReferences(
   profile: Profile,
   variableKey: VariableKey
 ): VariableReference {
-  var result: VariableReference = { key: variableKey, stages: [] };
-
-  const stages = profile.stages;
-  stages.forEach((stage, stageIndex) => {
+  const stageRefs = profile.stages.map((stage, stageIndex) => {
+    console.log('checking stage', stage.key);
     const points: VariablePointReference[] = stage.dynamics.points
       .map((point, index) => ({ point, index }))
       .filter(
-        ({ point }) => point[0] === variableKey || point[1] === variableKey
+        ({ point }) =>
+          point[0] === '$' + variableKey || point[1] === '$' + variableKey
       );
 
     const exitTriggers: VariableExitTriggerReference[] = (
       stage.exit_triggers || []
     )
       .map((trigger, index) => ({ trigger, index }))
-      .filter(({ trigger }) => trigger.value === variableKey);
+      .filter(({ trigger }) => trigger.value === '$' + variableKey);
 
     const limits: VariableLimitReference[] = (stage.limits || [])
       .map((limit, index) => ({ limit, index }))
-      .filter(({ limit }) => limit.value === variableKey);
+      .filter(({ limit }) => limit.value === '$' + variableKey);
 
     if (points.length > 0 || exitTriggers.length > 0 || limits.length > 0) {
       const referencesInStage: VariableStageReference = {
         index: stageIndex,
         key: stage.key,
-        points: [],
-        exit_triggers: [],
-        limits: []
+        points: points,
+        exit_triggers: exitTriggers,
+        limits: limits,
       };
-      result.stages.push(referencesInStage);
+      return referencesInStage;
     }
+    return;
   });
 
-  return result;
+  return { key: variableKey, stages: stageRefs.filter((ref) => !!ref) };
 }
