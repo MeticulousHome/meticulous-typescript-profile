@@ -46,6 +46,7 @@ export interface Profile {
   final_weight: number; // min: 0, max: 2000
   variables: Variable[];
   stages: Stage[];
+  last_changed?: number;
 }
 
 function validateVariableOrValues(profile: Profile) {
