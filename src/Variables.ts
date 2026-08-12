@@ -71,7 +71,7 @@ export function findVariableReferences(
         key: stage.key,
         points: points,
         exit_triggers: exitTriggers,
-        limits: limits,
+        limits: limits
       };
       return referencesInStage;
     }
