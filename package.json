@@ -8,8 +8,8 @@
   "scripts": {
     "build": "tsc",
     "check-types": "tsc --noEmit && tsc --project tsconfig.type-tests.json",
-    "format": "prettier --config .prettierrc \"{src/**/,.github/**/,}*.{tsx,ts}\" --write",
-    "format:check": "prettier --config .prettierrc \"{src/**/,.github/**/,}*.{tsx,ts}\" --check"
+    "format": "prettier --config .prettierrc \"{src/**/,.github/**/,type-tests/**/,}*.{tsx,ts}\" --write",
+    "format:check": "prettier --config .prettierrc \"{src/**/,.github/**/,type-tests/**/,}*.{tsx,ts}\" --check"
   },
   "repository": {
     "type": "git",
