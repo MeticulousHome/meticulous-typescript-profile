@@ -1,6 +1,6 @@
 import { VariableOrValue } from '.';
 
-export type ExitTriggerComparison = '>=' | '<=';
+export type ExitTriggerComparison = '>' | '<' | '>=' | '<=';
 
 export const ExitTriggerRelativeAllowed: Record<ExitTriggerType, boolean> = {
   pressure: false,
@@ -35,5 +35,6 @@ export interface ExitTrigger {
   type: ExitTriggerType;
   value: VariableOrValue;
   relative?: boolean;
-  comparison?: ExitTriggerComparison; // ">=" is assumed if non existant
+  /** Defaults to greater-than-or-equal (`>=`) when omitted. */
+  comparison?: ExitTriggerComparison;
 }

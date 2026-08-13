@@ -1,15 +1,15 @@
 {
   "name": "@meticulous-home/espresso-profile",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "description": "Typescript definitions to deal with the meticulous profiles",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "type": "module",
   "scripts": {
     "build": "tsc",
-    "check-types": "tsc --noEmit",
-    "format": "prettier --config .prettierrc \"{src/**/,.github/**/,}*.{tsx,ts}\" --write",
-    "format:check": "prettier --config .prettierrc \"{src/**/,.github/**/,}*.{tsx,ts}\" --check"
+    "check-types": "tsc --noEmit && tsc --project tsconfig.type-tests.json",
+    "format": "prettier --config .prettierrc \"{src/**/,.github/**/,type-tests/**/,}*.{tsx,ts}\" --write",
+    "format:check": "prettier --config .prettierrc \"{src/**/,.github/**/,type-tests/**/,}*.{tsx,ts}\" --check"
   },
   "repository": {
     "type": "git",
